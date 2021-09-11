@@ -1,13 +1,3 @@
-/**
- * Header Documentation for this file
- * 
- * @file <map.js>
- * @description this file will only run in map.html, this file will display Map and  options to select locations as well as the Taxi type.
- * @author Mohamed Azhan Ameed Pillai mame0009@student.monash.edu
- * @author Shuta Gunraku 31024548 sgun0027@student.monash.edu
- * @author Samuel Yong 32238266 syon0008@student.monash.edu
- * @author Sek Yu Heng 31109918 ysek0003@student.monash.edu
- */
 "use strict";
 let getDetails = localStorage.getItem(INDEX_STORE);
 let getDetailsObject = JSON.parse(getDetails);
@@ -56,8 +46,7 @@ let timeSplitHour = (parseInt(timeSplit[0], 10));
 let timeSplitEdit = 0;
 if (timeSplitHour >= 12) {
     timeSplitEdit += timeSplitHour - 12;
-}
-else {
+} else {
     timeSplitEdit += timeSplitHour;
 }
 
@@ -123,14 +112,12 @@ function cancel() {
             let position = Number(localStorage.getItem(INDEX));
             viewData.cancelBooking(position);
             updateLocalStorage(DATA, viewData);
-            alert`Booking cancelled!`;
+            alert `Booking cancelled!`;
             window.location.replace("viewAllBookings.html");
-        }
-        else if (totalDifference >= 0) {
-            alert`Cannot cancel pending rides that are less than 10 minutes!`;
-        }
-        else {
-            alert`This ride is already over (check status)!`;
+        } else if (totalDifference >= 0) {
+            alert `Cannot cancel pending rides that are less than 10 minutes!`;
+        } else {
+            alert `This ride is already over (check status)!`;
         }
     }
 }
@@ -154,7 +141,7 @@ window.onload = function selectedDetails() {
 
 
     let bookingDateObject = getDetailsObject._dateBook;
-    let bookingNumberObject = getDetailsObject._bookingNumber;  
+    let bookingNumberObject = getDetailsObject._bookingNumber;
     let locationObject = getDetailsObject._location;
     let stopsLocationObject = getDetailsObject._stops;
 
@@ -181,8 +168,7 @@ window.onload = function selectedDetails() {
             stopsLocationRef.innerHTML += `${stopsLocationObject[i].address}` + `<br>`;
         }
         finalDestinationRef.innerHTML += `${finalDestinationAddress}`;
-    }
-    else {
+    } else {
         pickUpRef.innerHTML += `${pickUpAddress}`;
         stopsLocationRef.innerHTML += `No stops in taxi ride!`
         finalDestinationRef.innerHTML += `${finalDestinationAddress}`;
@@ -190,11 +176,9 @@ window.onload = function selectedDetails() {
 
     if (totalDifference < 0) {
         statusRef.innerHTML += `Done`;
-    }
-    else if (getDetailsObject._status == "" && totalDifference >= 0) {
+    } else if (getDetailsObject._status == "" && totalDifference >= 0) {
         statusRef.innerHTML += `Pending`;
-    }
-    else if (getDetailsObject._status == "cancel") {
+    } else if (getDetailsObject._status == "cancel") {
         statusRef.innerHTML += `CANCELLED`;
     }
 
@@ -212,12 +196,11 @@ window.onload = function selectedDetails() {
     totalCostRef.innerHTML += `RM ${estimatedFareObject.toFixed(2)}`;
 
 
-//The logic statement below will disable cancel button if the selected data was already cancelled.
+    //The logic statement below will disable cancel button if the selected data was already cancelled.
     if (getDetailsObject._status == "cancel") {
         buttonRef.disabled = true;
         buttonRef.innerHTML = "CANCELLED";
-    }
-    else if (totalDifference < 0) {
+    } else if (totalDifference < 0) {
         buttonRef.disabled = true;
     }
 }
@@ -234,8 +217,7 @@ function displayVehicle() {
 
     if (getDetailsObject._status == "cancel") {
         taxiTypeRef.disabled = true;
-    }
-    else if (totalDifference < 0) {
+    } else if (totalDifference < 0) {
         taxiTypeRef.disabled = true;
     }
 
@@ -288,7 +270,7 @@ if (specificData._stops.length == 0) {
         zoom: 10
     });
 
-    map.on('load', function () {
+    map.on('load', function() {
         map.addSource('route', {
             'type': 'geojson',
             'data': {
@@ -318,7 +300,7 @@ if (specificData._stops.length == 0) {
         });
     });
 
-    
+
     //Line 325 to 339 will adjust the map according to the pickUp location, dropOff location and stops location.
     let arrayLng = [];
     let arrayLat = [];
@@ -326,15 +308,14 @@ if (specificData._stops.length == 0) {
     arrayLng[0] = pickUpLongitude;
     arrayLat[0] = pickUpLatitude;
 
-    
-    for (let j = 0; j < specificData._stops.length; j++)
-    {
-        let incrementIndexByOne = 1;    
+
+    for (let j = 0; j < specificData._stops.length; j++) {
+        let incrementIndexByOne = 1;
         arrayLng[j + incrementIndexByOne] = specificData._stops[j].coordinates.lng;
         arrayLat[j + incrementIndexByOne] = specificData._stops[j].coordinates.lat;
     }
 
-        
+
     arrayLng[arrayLng.length] = dropOffLongitude;
     arrayLat[arrayLat.length] = dropOffLatitude;
 
@@ -344,7 +325,10 @@ if (specificData._stops.length == 0) {
     let minLat = Math.min(...arrayLat);
 
 
-    map.fitBounds([[minLng - 0.1, minLat - 0.1], [maxLng + 0.1, maxLat + 0.1]]);
+    map.fitBounds([
+        [minLng - 0.1, minLat - 0.1],
+        [maxLng + 0.1, maxLat + 0.1]
+    ]);
 
 
     let pickupMarker = new mapboxgl.Marker({});
@@ -355,8 +339,7 @@ if (specificData._stops.length == 0) {
     dropoffMarker.setLngLat([dropOffLongitude, dropOffLatitude]);
     // marker.setPopup(popup);
     dropoffMarker.addTo(map);
-}
-else if (specificData._stops.length != 0) {
+} else if (specificData._stops.length != 0) {
     let minLength = 1;
     let maxLength = 2;
     let firstIndex = 0;
@@ -371,7 +354,7 @@ else if (specificData._stops.length != 0) {
             zoom: 10
         });
 
-        map.on('load', function () {
+        map.on('load', function() {
             map.addSource('route', {
                 'type': 'geojson',
                 'data': {
@@ -422,15 +405,14 @@ else if (specificData._stops.length != 0) {
         arrayLng[0] = pickUpLongitude;
         arrayLat[0] = pickUpLatitude;
 
-    
-        for (let j = 0; j < specificData._stops.length; j++)
-        {
-            let incrementIndexByOne = 1;    
+
+        for (let j = 0; j < specificData._stops.length; j++) {
+            let incrementIndexByOne = 1;
             arrayLng[j + incrementIndexByOne] = specificData._stops[j].coordinates.lng;
             arrayLat[j + incrementIndexByOne] = specificData._stops[j].coordinates.lat;
         }
 
-        
+
         arrayLng[arrayLng.length] = dropOffLongitude;
         arrayLat[arrayLat.length] = dropOffLatitude;
 
@@ -440,11 +422,12 @@ else if (specificData._stops.length != 0) {
         let minLat = Math.min(...arrayLat);
 
 
-        map.fitBounds([[minLng - 0.1, minLat - 0.1], [maxLng + 0.1, maxLat + 0.1]]);
+        map.fitBounds([
+            [minLng - 0.1, minLat - 0.1],
+            [maxLng + 0.1, maxLat + 0.1]
+        ]);
 
-    }
-
-    else if (specificData._stops.length == maxLength) {
+    } else if (specificData._stops.length == maxLength) {
         mapboxgl.accessToken = MAPBOX_TOKEN;
         let map = new mapboxgl.Map({
             container: 'map',
@@ -453,7 +436,7 @@ else if (specificData._stops.length != 0) {
             zoom: 10
         });
 
-        map.on('load', function () {
+        map.on('load', function() {
             map.addSource('route', {
                 'type': 'geojson',
                 'data': {
@@ -508,15 +491,14 @@ else if (specificData._stops.length != 0) {
         arrayLng[0] = pickUpLongitude;
         arrayLat[0] = pickUpLatitude;
 
-    
-        for (let j = 0; j < specificData._stops.length; j++)
-        {
-            let incrementIndexByOne = 1;    
+
+        for (let j = 0; j < specificData._stops.length; j++) {
+            let incrementIndexByOne = 1;
             arrayLng[j + incrementIndexByOne] = specificData._stops[j].coordinates.lng;
             arrayLat[j + incrementIndexByOne] = specificData._stops[j].coordinates.lat;
         }
 
-        
+
         arrayLng[arrayLng.length] = dropOffLongitude;
         arrayLat[arrayLat.length] = dropOffLatitude;
 
@@ -526,7 +508,10 @@ else if (specificData._stops.length != 0) {
         let minLat = Math.min(...arrayLat);
 
 
-        map.fitBounds([[minLng - 0.1, minLat - 0.1], [maxLng + 0.1, maxLat + 0.1]]);
+        map.fitBounds([
+            [minLng - 0.1, minLat - 0.1],
+            [maxLng + 0.1, maxLat + 0.1]
+        ]);
 
     }
 }

@@ -1,10 +1,3 @@
-/**
- * Header Documentation for this file
- * 
- * @file <allBookings.js>
- * @description this file will only run in viewAllBookings.html, this file will display commenced, future and past data in table form
- * @author Sek Yu Heng 31109918 ysek0003@student.monash.edu
- */
 "use strict";
 
 /**
@@ -75,8 +68,7 @@ if (hold2.length == 4) {
         fiveMinutesBefore += hold3[i];
         fiveMinutesAfter += hold2[i];
     }
-}
-else if (hold2.length == 3) {
+} else if (hold2.length == 3) {
     for (let i = 0; i < secondIndex; i++) {
         fiveMinutesBefore += "0" + hold3[i];
         fiveMinutesAfter += "0" + hold2[i];
@@ -113,8 +105,7 @@ for (let i = 0; i < viewData._data.length; i++) {
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent button"
         onclick = "view(${i})">view</button></td></tr>`;
             commencedRef.innerHTML += commenced;
-        }
-        else if (viewData._data[i]._timeSelected > fiveMinutesAfter) {
+        } else if (viewData._data[i]._timeSelected > fiveMinutesAfter) {
             let commenced = `<tr class="height"><td class="color">${viewData._data[i]._dateBook}</td><td class="color">
         ${viewData._data[i]._bookingNumber}</td><td class="color">${viewData._data[i]._tripDate}</td><td class="color">
         ${viewData._data[i]._pickUp.address}</td><td class="color">${viewData._data[i]._dropOff.address}</td><td class="color">
@@ -123,8 +114,7 @@ for (let i = 0; i < viewData._data.length; i++) {
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent button" 
         onclick = "view(${i})">view</button></td></tr>`;
             commencedRef.innerHTML += commenced;
-        }
-        else {
+        } else {
             let commenced = `<tr class="height"><td class="color">${viewData._data[i]._dateBook}</td><td class="color">
             ${viewData._data[i]._bookingNumber}</td><td class="color">${viewData._data[i]._tripDate}</td><td class="color">
             ${viewData._data[i]._pickUp.address}</td><td class="color">${viewData._data[i]._dropOff.address}</td><td class="color">

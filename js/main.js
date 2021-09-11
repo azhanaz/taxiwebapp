@@ -1,12 +1,3 @@
-/**
- * Header Documentation for this file
- * 
- * @file <main.js>
- * @description this file will only run in index.html, this file will allow user to start booking a taxi ride by selecting time first.
- * @author Samuel Yong Hui Ming syon0008@student.monash.edu
- * @author Sek Yu Heng 31109918 ysek0003@student.monash.edu
- */
-
 "use strict"
 
 
@@ -23,8 +14,7 @@ function liveClock() {
     // Check if it's before or afternoon
     if (hour < 12) {
         meridiem = "AM";
-    }
-    else {
+    } else {
         hour -= 12;
         meridiem = "PM";
     }
@@ -141,12 +131,9 @@ function selectLocation() {
         updateLocalStorage(CURRENT_DATA, currentData);
 
         window.location.replace("map.html");
-    }
-    else {
+    } else {
         let msg = "The booking time is invalid.\nPlease choose a time that is at least 1 minute ahead from now."
         alert(msg);
         return condition;
     }
 }
-
-

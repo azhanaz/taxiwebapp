@@ -1,12 +1,3 @@
-/**
- * Header Documentation for this file
- * 
- * @file <confirmation.js>
- * @description this file will only run in confirmation.html, this file contain funtion that display the booking data and 
- * function that allow user to book, go back and cancel.
- * @author Sek Yu Heng 31109918 ysek0003@student.monash.edu
- * @author Shuta Gunraku 31024548 sgun0027@student.monash.edu
- */
 "use strict";
 
 /**
@@ -100,8 +91,7 @@ function display() {
             let location = `<span>${currentData._stops[i].address}</span>`;
             address += location;
         }
-    }
-    else {
+    } else {
         address += `<span>No additional stops</span>`
     }
     address += `</div>`;

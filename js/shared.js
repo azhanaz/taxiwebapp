@@ -1,14 +1,3 @@
-/**
- * Header Documentation for this file
- * 
- * @file <shared.js>
- * @description This file will run in all html, it contain all the class, when user firt time use this app local storage will 
- * auto created, all data will be restore when enter each html, all calculation is included in this file, this file also contain all the
- * keys
- * @author Sek Yu Heng 31109918 ysek0003@student.monash.edu
- * @author Mohamed Azhan Ameed Pillai mame0009@student.monash.edu
- * 
- */
 "use strict";
 
 /**
@@ -37,21 +26,21 @@ class Booking {
      * @return none
      */
     constructor() {
-        this._taxiType = "";
-        this._timeSelected = "";
-        this._pickUp = "";
-        this._dropOff = "";
-        this._tripDate = "";
-        this._estimatedDistance = 0;
-        this._estimatedFare = 0;
-        this._numberOfStops = 0;
-        this._dateBook = "";
-        this._stops = [];
-        this._location = [];
-        this._bookingNumber = "";
-        this._status = "";
-    }
-    //accessor
+            this._taxiType = "";
+            this._timeSelected = "";
+            this._pickUp = "";
+            this._dropOff = "";
+            this._tripDate = "";
+            this._estimatedDistance = 0;
+            this._estimatedFare = 0;
+            this._numberOfStops = 0;
+            this._dateBook = "";
+            this._stops = [];
+            this._location = [];
+            this._bookingNumber = "";
+            this._status = "";
+        }
+        //accessor
     get taxiType() {
         return this._taxiType;
     }
@@ -89,9 +78,9 @@ class Booking {
         return this._bookingNumber;
     }
     get status() {
-        return this._status;
-    }
-    //mutator
+            return this._status;
+        }
+        //mutator
     set taxiType(taxiType) {
         this._taxiType = taxiType;
     }
@@ -126,14 +115,14 @@ class Booking {
         this._bookingNumber = number;
     }
     set status(status) {
-        this._status = status;
-    }
-    //method
-    /**
-     * @methode currentDate()
-     * @description find the current date and arrange them
-     * @return none
-     */
+            this._status = status;
+        }
+        //method
+        /**
+         * @methode currentDate()
+         * @description find the current date and arrange them
+         * @return none
+         */
     currentDate() {
         //get date only
         let today = new Date().toLocaleDateString();
@@ -175,8 +164,7 @@ class Booking {
             for (let i = 2; i < fourthIndex; i++) {
                 this._dateBook += today[i];
             }
-        }
-        else if (lengthOfDate == midLength) {
+        } else if (lengthOfDate == midLength) {
             //when month is single digit
             if (today[secondIndex] == "/") {
                 for (let i = 5; i < lengthOfDate; i++) {
@@ -225,18 +213,15 @@ class Booking {
                 dropOff.push(this._stops[i]);
             }
             dropOff.push(this._dropOff);
-        }
-        else if (this._stops == "") {
+        } else if (this._stops == "") {
             dropOff.push(this._pickUp);
             dropOff.push(this._dropOff);
-        }
-        else if (this._dropOff == "") {
+        } else if (this._dropOff == "") {
             dropOff.push(this._pickUp);
             for (let i = 0; i < this._stops.length; i++) {
                 dropOff.push(this._stops[i]);
             }
-        }
-        else {
+        } else {
             dropOff.push(this._pickUp);
             for (let i = 0; i < this._stops.length; i++) {
                 dropOff.push(this._stops[i]);
@@ -320,8 +305,7 @@ class Booking {
             else if (this._tripDAte != this._dateBook) {
                 if (time >= 0 && time < 6) {
                     this._estimatedFare = (flagRate + this._estimatedDistance * distanceFare + advanceBooking) * nightLevy;
-                }
-                else if (time >= 6 && time <= 23) {
+                } else if (time >= 6 && time <= 23) {
                     this._estimatedFare = flagRate + this._estimatedDistance * distanceFare + advanceBooking;
                 }
             }
@@ -331,52 +315,41 @@ class Booking {
             if (this._tripDate == this._dateBook) {
                 if (time >= 0 && time < 6) {
                     this._estimatedFare = (flagRate + suv + this._estimatedDistance * distanceFare) * nightLevy;
-                }
-                else if (time >= 6 && time <= 23) {
+                } else if (time >= 6 && time <= 23) {
                     this._estimatedFare = flagRate + suv + this._estimatedDistance * distanceFare;
                 }
-            }
-            else if (this._tripDAte != this._dateBook) {
+            } else if (this._tripDAte != this._dateBook) {
                 if (time >= 0 && time < 6) {
                     this._estimatedFare = (flagRate + suv + this._estimatedDistance * distanceFare + advanceBooking) * nightLevy;
-                }
-                else if (time >= 6 && time <= 23) {
+                } else if (time >= 6 && time <= 23) {
                     this._estimatedFare = flagRate + suv + this._estimatedDistance * distanceFare + advanceBooking;
                 }
             }
-        }
-        else if (this._taxiType == "Van") {
+        } else if (this._taxiType == "Van") {
             if (this._tripDate == this._dateBook) {
                 if (time >= 0 && time < 6) {
                     this._estimatedFare = (flagRate + van + this._estimatedDistance * distanceFare) * nightLevy;
-                }
-                else if (time >= 6 && time <= 23) {
+                } else if (time >= 6 && time <= 23) {
                     this._estimatedFare = flagRate + van + this._estimatedDistance * distanceFare;
                 }
-            }
-            else if (this._tripDAte != this._dateBook) {
+            } else if (this._tripDAte != this._dateBook) {
                 if (time >= 0 && time < 6) {
                     this._estimatedFare = (flagRate + van + this._estimatedDistance * distanceFare + advanceBooking) * nightLevy;
-                }
-                else if (time >= 6 && time <= 23) {
+                } else if (time >= 6 && time <= 23) {
                     this._estimatedFare = flagRate + van + this._estimatedDistance * distanceFare + advanceBooking;
                 }
             }
-        }
-        else if (this._taxiType == "Minibus") {
+        } else if (this._taxiType == "Minibus") {
             if (this._tripDate == this._dateBook) {
                 if (time >= 0 && time < 6) {
                     this._estimatedFare = (flagRate + minibus + this._estimatedDistance * distanceFare) * nightLevy;
-                }
-                else if (time >= 6 && time <= 23) {
+                } else if (time >= 6 && time <= 23) {
                     this._estimatedFare = flagRate + minibus + this._estimatedDistance * distanceFare;
                 }
-            }
-            else if (this._tripDAte != this._dateBook) {
+            } else if (this._tripDAte != this._dateBook) {
                 if (time >= 0 && time < 6) {
                     this._estimatedFare = (flagRate + minibus + this._estimatedDistance * distanceFare + advanceBooking) * nightLevy;
-                }
-                else if (time >= 6 && time <= 23) {
+                } else if (time >= 6 && time <= 23) {
                     this._estimatedFare = flagRate + minibus + this._estimatedDistance * distanceFare + advanceBooking;
                 }
             }
@@ -389,28 +362,26 @@ class Booking {
      * @return none
      */
     assign() {
-        this._pickUp = "";
-        this._dropOff = "";
-        this._stops = [];
-        for (let i = 0; i < this._location.length; i++) {
-            if (this._location[i].name == "first") {
-                this._pickUp = this._location[i];
+            this._pickUp = "";
+            this._dropOff = "";
+            this._stops = [];
+            for (let i = 0; i < this._location.length; i++) {
+                if (this._location[i].name == "first") {
+                    this._pickUp = this._location[i];
+                } else if (this._location[i].name == "last") {
+                    this._dropOff = this._location[i];
+                } else {
+                    let stops = this._location[i];
+                    this._stops.push(stops);
+                }
             }
-            else if (this._location[i].name == "last") {
-                this._dropOff = this._location[i];
-            }
-            else {
-                let stops = this._location[i];
-                this._stops.push(stops);
-            }
+            updateLocalStorage(CURRENT_DATA, currentData)
         }
-        updateLocalStorage(CURRENT_DATA, currentData)
-    }
-    /**
-     * @method fromData()
-     * @description retore when page load, mainly restore data
-     * @param {object} data 
-     */
+        /**
+         * @method fromData()
+         * @description retore when page load, mainly restore data
+         * @param {object} data 
+         */
     fromData(data) {
         this._taxiType = data._taxiType;
         this._timeSelected = data._timeSelected;
@@ -433,17 +404,17 @@ class Booking {
  */
 class AllBookings {
     constructor() {
-    /**
-     * @class constructor()
-     * @return none
-     */
-        this._data = [];
-    }
-    //accessor 
+            /**
+             * @class constructor()
+             * @return none
+             */
+            this._data = [];
+        }
+        //accessor 
     get data() {
-        return this._data;
-    }
-    //method
+            return this._data;
+        }
+        //method
 
     /**
      * @method cancelBooking()
@@ -451,15 +422,15 @@ class AllBookings {
      * @param {numebr} index 
      */
     cancelBooking(index) {
-        //only given to booking that is canceled
-        viewData._data[index]._status = "cancel";
-    }
-    /**
-     * @method fromData()
-     * @description restore data
-     * @param {objects} arr 
-     */
-    //restore when reload page
+            //only given to booking that is canceled
+            viewData._data[index]._status = "cancel";
+        }
+        /**
+         * @method fromData()
+         * @description restore data
+         * @param {objects} arr 
+         */
+        //restore when reload page
     fromData(arr) {
         this._data = [];
         for (let i = 0; i < arr._data.length; i++) {
@@ -482,8 +453,7 @@ function checkLocalStorage(key) {
     //check exist or not
     if (item === null) {
         return false;
-    }
-    else if (item !== null) {
+    } else if (item !== null) {
         return true;
     }
 }
@@ -512,12 +482,10 @@ function retrieveData(key) {
     //convert to object
     try {
         data = JSON.parse(data);
-    }
-    catch (error) {
+    } catch (error) {
         //data is in string 
         console.log(error)
-    }
-    finally {
+    } finally {
         return data;
     }
 }
@@ -532,8 +500,7 @@ if (checkLocalStorage(CURRENT_DATA) == true) {
     let json = retrieveData(CURRENT_DATA);
     //make back instance
     currentData.fromData(json);
-}
-else if (checkLocalStorage(CURRENT_DATA) == false) {
+} else if (checkLocalStorage(CURRENT_DATA) == false) {
     //create a local storage
     updateLocalStorage(CURRENT_DATA, currentData);
 }
@@ -544,8 +511,7 @@ if (checkLocalStorage(DATA) == true) {
     let json = retrieveData(DATA);
     //make back instance
     viewData.fromData(json);
-}
-else if (checkLocalStorage(DATA) == false) {
+} else if (checkLocalStorage(DATA) == false) {
     //create a local storage
     updateLocalStorage(DATA, viewData);
 }

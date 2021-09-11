@@ -1,13 +1,3 @@
-/**
- * Header Documentation for this file
- *
- * @file <map.js>
- * @description this file will only run in map.html, this file will display Map and  options to select locations as well as the Taxi type.
- * @author Mohamed Azhan Ameed Pillai mame0009@student.monash.edu
- * @author Shuta Gunraku 31024548 sgun0027@student.monash.edu
- * @author Sek Yu Heng 31109918 ysek0003@student.monash.edu
- * @author Samuel Yong 32238266 syon0008#@student.monash.edu
- */
 "use strict";
 
 // Retrieve the access token for mapbox API
@@ -19,7 +9,7 @@ let markers = [];
 let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [101.6869, 3.1390],
+    center: [50.5577, 26.0667],
     zoom: 10
 });
 // Add buttons for controlling the map
@@ -87,7 +77,7 @@ function deleteStoppingLocation(position) {
     let addStoppingPointButtonRef = document.getElementById("stopping_location_button");
     addStoppingPointButtonRef.disabled = false;
 
-    setTimeout(removeRoute,1000);
+    setTimeout(removeRoute, 1000);
 }
 
 /**
@@ -98,8 +88,7 @@ function currentLocation() {
     if (navigator.geolocation) {
         // Call getCurrentPosition with success and error callbacks
         navigator.geolocation.getCurrentPosition(succeess, error);
-    }
-    else {
+    } else {
         alert("Geolocation is not supported in your browser.");
     }
 }
@@ -114,12 +103,11 @@ function succeess(position) {
     category = 'first';
     let long = position.coords.longitude;
     let lat = position.coords.latitude;
-    let data =
-    {
+    let data = {
         key: GEOCODING_KEY,
         q: `${lat},${long}`,
         callback: "showCurrentLocation",
-        countrycode: "my"
+        countrycode: "bh"
     };
     webServiceRequest(`https://api.opencagedata.com/geocode/v1/json`, data);
 }
@@ -163,13 +151,11 @@ function showCurrentLocation(response) {
             markers.push([marker, category, address]);
             marker.setLngLat([currentLong, currentLat]);
             marker.addTo(map);
-        }
-        else if (response.results.length === 0) {
+        } else if (response.results.length === 0) {
             alert("Our application is currently unavailable in your location.");
         }
 
-    }
-    else {
+    } else {
         alert("Current Location seems invalid. Check your network and try again.");
     }
 }
@@ -227,40 +213,35 @@ function getData(type) {
     if (type === 'first') {
         let city1Ref = document.getElementById("city1");
         let city1 = city1Ref.value;
-        data =
-        {
+        data = {
             key: GEOCODING_KEY,
             q: city1,
             callback: "showData",
-            // only available in Malaysia
-            countrycode: "my"
+            // only available in bahrain
+            countrycode: "bh"
         };
-    }
-    else if (type === 'last') {
+    } else if (type === 'last') {
         let city2Ref = document.getElementById("city2");
         let city2 = city2Ref.value;
-        data =
-        {
+        data = {
             key: GEOCODING_KEY,
             q: city2,
             callback: "showData",
-            countrycode: "my"
+            countrycode: "bh"
         };
-    }
-    else {
+    } else {
         let stopLocationRef = document.getElementById(`stop${type}`);
         let stopLocation = stopLocationRef.value;
-        data =
-        {
+        data = {
             key: GEOCODING_KEY,
             q: stopLocation,
             callback: "showData",
-            countrycode: "my"
+            countrycode: "bh"
         };
     }
     webServiceRequest(`https://api.opencagedata.com/geocode/v1/json`, data);
 
-    setTimeout(removeRoute,1000);
+    setTimeout(removeRoute, 1000);
 }
 
 /**
@@ -280,11 +261,9 @@ function showData(response) {
     // Check the input location type by category
     if (category === "last") {
         marker = new mapboxgl.Marker({ color: 'red' });
-    }
-    else if (category === "first") {
+    } else if (category === "first") {
         marker = new mapboxgl.Marker();
-    }
-    else {
+    } else {
         marker = new mapboxgl.Marker({ color: 'green', rotation: 70 });
     }
     // Add to markers[] to track marker data
@@ -305,7 +284,10 @@ function showData(response) {
         let minLng = Math.min(...arrayLng);
         let maxLat = Math.max(...arrayLat);
         let minLat = Math.min(...arrayLat);
-        map.fitBounds([[minLng - 0.2, minLat - 0.2], [maxLng + 0.2, maxLat + 0.2]]);
+        map.fitBounds([
+            [minLng - 0.2, minLat - 0.2],
+            [maxLng + 0.2, maxLat + 0.2]
+        ]);
     }
 }
 
@@ -324,41 +306,32 @@ function confirmation() {
     //inform user
     if (taxiType === "-") {
         alert("Please select a taxi type");
-    }
-    else if (start == "" && final == "") {
+    } else if (start == "" && final == "") {
         alert("Please fill in the pick up location and drop off location");
-    }
-    else if (start == "") {
+    } else if (start == "") {
         alert("Please fill in the pick up location");
-    }
-    else if (final == "") {
+    } else if (final == "") {
         alert("Please fill in the drop off location");
-    }
-    else if (markers == "") {
+    } else if (markers == "") {
         alert("Please press select");
-    }
-    else if (markers != "") {
+    } else if (markers != "") {
         let pick = "";
         let drop = "";
         let secondIndex = 1;
         for (let i = 0; i < markers.length; i++) {
             if (markers[i][secondIndex] == "first") {
                 pick += markers[i][secondIndex];
-            }
-            else if (markers[i][secondIndex] == "last") {
+            } else if (markers[i][secondIndex] == "last") {
                 drop += markers[i][secondIndex];
             }
         }
         if (pick == "" && drop == "") {
             alert("Please press select for pick up location and drop off location");
-        }
-        else if (pick == "") {
+        } else if (pick == "") {
             alert("Please press select for pick up location");
-        }
-        else if (drop == "") {
+        } else if (drop == "") {
             alert("Please press select for drop off location");
-        }
-        else if (stop == null) {
+        } else if (stop == null) {
             let to_confirmation = confirm("Do you want to proceed to confirmation?");
             if (to_confirmation) {
                 //extract data needed
@@ -380,8 +353,7 @@ function confirmation() {
                 //direct to confirmation page
                 window.location = "confirmation.html";
             }
-        }
-        else if (stop != null) {
+        } else if (stop != null) {
             for (let i = 0; i < count; i++) {
                 if (document.getElementById(`stop${i}`).value == "") {
                     alert("Please fill in location in the stop section");
@@ -469,18 +441,15 @@ function displayRoute() {
                 dropOff.push(currentData._stops[i]);
             }
             dropOff.push(currentData._dropOff);
-        }
-        else if (currentData._stops == "") {
+        } else if (currentData._stops == "") {
             dropOff.push(currentData._pickUp);
             dropOff.push(currentData._dropOff);
-        }
-        else if (currentData._dropOff == "") {
+        } else if (currentData._dropOff == "") {
             dropOff.push(currentData._pickUp);
             for (let i = 0; i < currentData._stops.length; i++) {
                 dropOff.push(currentData._stops[i]);
             }
-        }
-        else {
+        } else {
             dropOff.push(currentData._pickUp);
             for (let i = 0; i < currentData._stops.length; i++) {
                 dropOff.push(currentData._stops[i]);
@@ -502,7 +471,7 @@ function displayRoute() {
                 }
             }
         };
-        
+
         //assign coordinates
         for (let i = 0; i < dropOff.length; i++) {
             path.data.geometry.coordinates.push([dropOff[i].coordinates.lng, dropOff[i].coordinates.lat]);
@@ -512,8 +481,7 @@ function displayRoute() {
         //only run when no route
         if (map.getLayer('route')) {
 
-        }
-        else {
+        } else {
             map.addSource(`way${differentId}`, path);
 
             map.addLayer({
@@ -540,7 +508,7 @@ function displayRoute() {
  * @function removeRoute()
  * @description remove route
  */
-function removeRoute(){
+function removeRoute() {
     //remove layer if exist
     if (map.getLayer('route')) {
         map.removeLayer('route');
