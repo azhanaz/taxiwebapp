@@ -1,0 +1,47 @@
+/*-------------------------------------------*\
+    template.css
+    loaded in all the html files to be displayed.
+\*-------------------------------------------*/
+.page_title
+{
+    margin-top: 23px;
+    text-align: center;
+    position: relative;
+    font-size: 35px;
+}
+.logo
+{
+    height:150px;
+    margin-top:1px;
+    position:absolute;
+}
+body {
+    background-image: linear-gradient(#E19800, #3F51B5);
+    background-size: auto;
+}
+.mdl-layout__drawer{
+    background-image: linear-gradient(#E19800, #3F51B5);
+    background-size: auto;
+}
+.mdl-layout__drawer-button, .mdl-layout__drawer
+{
+    left: initial;
+    right: 0;
+    color: #3F51B5;
+}
+.mdl-layout-title{
+    font-size: 23px;
+    padding-left: 22px !important;
+}
+.mdl-layout__drawer 
+{
+    transform:translateX(250px);
+    color: #3F51B5;
+}
+.mdl-navigation__link{
+    color: #3F51B5;
+}
+.mdl-navigation a{
+    color:black !important;
+    font-size: 20px;
+}

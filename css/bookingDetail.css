@@ -1,0 +1,41 @@
+/*-------------------------------------------*\
+    bookingDetail.css
+    Only loaded in bookingDetail.html
+\*-------------------------------------------*/
+.text1{
+    font-size:18px;
+}
+.buttons{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 15px !important;
+}
+.margin-top-30px
+{
+    margin-top: 30px;
+}
+.margin-bottom-20px
+{
+    margin-bottom: 20px;
+}
+.margin-bottom-75px
+{
+    margin-bottom: 75px;
+}
+.address span
+{
+    display: block;
+}
+body
+{
+      margin: 0;
+       padding: 0;
+}
+#map {
+    position: fixed;
+    width: 600px;
+    height: 400px;
+    top:450px;
+    bottom: 0;
+}

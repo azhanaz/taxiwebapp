@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Map Page</title>
+    <meta name="description" content="this page is to display map for users to select booking locations.">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/map.css">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="icon" href="img/logoIcon.jpg" type="image/gif" sizes="16x16">
+</head>
+
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout ">
+        <header>
+            <div>
+                <img id="logo" src="img/logo.png" class="logo">
+            </div>
+
+            <div class="page_title">Map</div>
+
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+            </div>
+        </header>
+
+
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Navigation Drawer</span>
+            <nav class="mdl-navigation">
+
+                <a class="mdl-navigation__link" href="index.html">Home</a>
+                <a class="mdl-navigation__link" href="viewAllBookings.html">View all
+                    bookings</a>
+            </nav>
+
+        </div>
+
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet margin_top_40px font_size_22px">Please
+                        Select The Pick & Drop Location</div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet"></div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet"></div>
+                </div>
+
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet">
+                        <div class="map">
+                            <div id="map" class="map"></div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet"></div>
+                    <div class="mdl-cell mdl-cell--5-col mdl-cell--2-col-tablet location_input_column">
+                        <label for="city1" class="text1 block_display">Type Pickup location here:</label>
+                        <input type="text" id="city1" list="locationList" value="" class="location_input">
+                        <datalist id="locationList" name="city1">
+                            <option value="">
+                        </datalist>
+                        <button
+                            class="booking_button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored location_input_margin20 inline_button"
+                            onclick="getData('first')">Select
+
+                        </button>
+
+                        <button
+                            class="booking_button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored inline_button margin-bottom-20px"
+                            onclick="currentLocation()">Current Location
+                        </button>
+                        <span id="stopping_locations">
+                            <p class="text1 location_input_margin10 block_display">Add Stopping Points here:</p>
+                        </span>
+                        <button id="stopping_location_button"
+                            class="booking_button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored block_display margin_bottom_20px"
+                            onclick="addStoppingLocation()">Add Stopping Point
+                        </button>
+                        <label for="city2" class="text1 location_input_margin10 block_display">Type Drop-off location
+                            here:</label>
+                        <input type="text" id="city2" value="" class="location_input">
+                        <button
+                            class="booking_button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored location_input_margin20 inline_button background_black"
+                            onclick="getData('last')">Select
+                        </button>
+                        <select id="taxiType" class="taxi_type_button">
+                            <option value="-">Select a taxi type</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Van">Van</option>
+                            <option value="Minibus">Minibus</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bottom mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet">
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            onclick="back()">Go back to booking</button>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet"></div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet">
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent right-button"
+                            onclick="confirmation()">Proceed to Confirmation</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+
+
+
+    <script src="js/shared.js"></script>
+    <script src="js/map.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+</body>
+
+</html>

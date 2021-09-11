@@ -1,0 +1,50 @@
+/*-------------------------------------------*\
+    viewAllBookings.css
+    Only loaded in viewAllBookings.html
+\*-------------------------------------------*/
+.color{
+    background-color: white;
+}
+
+.height{
+    height: 60px;
+}
+
+.font_size{
+    font-size: 20px;
+}
+
+.button_border{
+    border: 0;
+    width: 75px;
+}
+
+.button{
+    display: inline-block;
+    padding: -1px;
+    color: #fff;
+    border: 1px solid #fff;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+    border-radius: 15px !important;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #000000;
+    text-align: center;
+    padding: 8px;
+}
+.empty_space
+{
+    width: 75px !important;
+    display: inline-block !important;
+    margin: 0 !important;
+    padding:0 !important;
+}

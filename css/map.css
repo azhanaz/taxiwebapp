@@ -1,0 +1,99 @@
+/*-------------------------------------------*\
+    map.css
+    Only loaded in map.html
+\*-------------------------------------------*/
+.location_input
+{
+    width: 300px;
+    height: 30px;
+}
+button{
+    border-radius: 15px !important;
+}
+.text1
+{
+    font-size: 20px;
+}
+.background_black
+{
+    background-color: black !important;
+}
+
+.margin_top_40px
+{
+    margin-top: 40px;
+}
+.font_size_22px
+{
+    font-size: 22px;
+}
+.height_300px
+{
+    height:300px;
+}
+body {
+    margin: 0; 
+    padding: 0;
+ }
+#map {
+    position: fixed;
+    top:200px;
+    bottom: 0;
+}
+.inline_button
+{
+    margin-bottom:25px;
+}
+.bottom
+{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+.map
+{
+    width: 800px;
+    height: 600px;
+}
+.block_display
+{
+    display: block;
+}
+.location_input_margin10
+{
+    margin-top: 10px;
+}
+.location_input_margin20
+{
+    margin-top: 20px;
+}
+.location_input_margin60
+{
+    margin-top: 60px;
+}
+.right-button
+{
+    float: right;
+    margin-right: 20px;
+}
+input[type=text] 
+{
+    font-size: 20px;
+}
+.location_input_column
+{
+    color: white;
+    padding-left: 30px;
+}
+.margin_bottom_20px
+{
+    margin-bottom: 40px;
+}
+.taxi_type_button
+{
+    height: 40px;
+    width: 300px;
+    font-size: 23px;
+    text-align-last: center;
+    margin-top: 20px;
+}

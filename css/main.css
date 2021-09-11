@@ -1,0 +1,51 @@
+/*-------------------------------------------*\
+    main.css
+    Only loaded in main.html
+\*-------------------------------------------*/
+.time_display
+{
+    font-size: 40px;
+}
+
+.booking_button
+{
+    height: 80px;
+    width: 300px;
+    font-size: 20px;
+}
+
+.time_button
+{
+    height: 80px;
+    width: 300px;
+    font-size: 20px;
+}
+
+.select_location_button
+{
+    height: 80px;
+    width: 300px;
+    font-size: 20px;
+}
+
+.center_div
+{
+    text-align: center;
+}
+
+.time_row_height
+{
+    height:100px;
+}
+
+.page-content button, .page-content input, .page-content select
+{
+    width: 350px;
+}
+button{
+    border-radius: 15px !important;
+}
+.text1{
+    margin-top: 20px;
+    font-size: 25px;
+}

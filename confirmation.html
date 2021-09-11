@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Payment Page</title>
+    <meta name="description" content="This page is to display the ongoing booking info and let users confirm their bookings.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/confirmation.css">
+    <link rel="icon" href="img/logoIcon.jpg" type="image/gif" sizes="16x16">
+</head>
+
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout ">
+        <header>
+            <div>
+                <img id="logo" src="img/logo.png" class="logo">
+            </div>
+            <div class="page_title">Confirmation</div>
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Navigation Drawer</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html">Home</a>
+                <a class="mdl-navigation__link" href="viewAllBookings.html">View all bookings</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content" style="margin-top:150px">
+            <div class="page-content">
+                <div class="mdl-grid margin_bottom_40px">
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Booking Date and Time:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet text1">
+                        <div><span id="bookingDate">Date/time</span></div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Final Destinations:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet text1">
+                        <div><span id="finalDestination">Address</span></div>
+                    </div>
+                </div>
+                <div class="mdl-grid margin_bottom_40px">
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Number of stops:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet text1">
+                        <div><span id="stops">Number</span></div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Estimated distance:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet text1">
+                        <div><span id="estimatedDistance">Number</span></div>
+                    </div>
+                </div>
+
+                <div class="mdl-grid margin_bottom_40px">
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Pick up location:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet text1">
+                        <div><span id="pickUp">Address</span></div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Type of taxi:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet text1">
+                        <div>
+                            <select id="chooseTaxi">
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Van">Van</option>
+                                <option value="Minibus">Minibus</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-grid margin_bottom_40px">
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Stops:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet address text1" id="stopsLocations">
+                        <!-- This part user innerHTML -->
+                        <!-- Example is shown below it must be changed-->
+                        <div>
+                            <span>Address</span>
+                            <span>Address</span>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <div class="text1">Total cost:</div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet text1">
+                        <div><span id="totalCost">Number</span></div>
+                    </div>
+                </div>
+                <div class="mdl-grid buttons">
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            onclick="back()">
+                            <!--A function need to be fill in-->
+                            Back
+                        </button>
+                    </div>
+                    <div class="mdl-cell mdl-cell--5-col mdl-cell--2-col-tablet"></div>
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet">
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            onclick="cancel()">
+                            <!--A function need to be fill in-->
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet">
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            onclick="book()">
+                            <!--A function need to be fill in-->
+                            Book
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/confirmation.js"></script>
+    <script src="js/shared.js"></script>
+</body>
+
+</html>
